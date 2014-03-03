@@ -1,0 +1,7 @@
+debug
+.installed.cfg
+bin/
+develop-eggs/
+parts/
+serienjunky.egg-info/
+__pycache__
