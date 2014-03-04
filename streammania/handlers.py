@@ -2,8 +2,8 @@ import tornado.auth
 from tornado.web import asynchronous
 
 
-from serienjunky.models import User
-from serienjunky.base import BaseHandler
+from streammania.models import User
+from streammania.base import BaseHandler
 
 
 class GoogleAuthHandler(BaseHandler, tornado.auth.GoogleMixin):

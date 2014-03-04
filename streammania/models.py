@@ -1,11 +1,10 @@
-
 from __future__ import absolute_import
 
 import sqlalchemy as sa
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-from serienjunky.config import sqla_uri, sqla_params
+from streammania.config import sqla_uri, sqla_params
 
 engine = sa.create_engine(sqla_uri, **sqla_params)
 Session = scoped_session(sessionmaker(autocommit=False,

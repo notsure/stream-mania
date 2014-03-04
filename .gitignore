@@ -3,5 +3,5 @@ debug
 bin/
 develop-eggs/
 parts/
-serienjunky.egg-info/
+*.egg-info/
 __pycache__

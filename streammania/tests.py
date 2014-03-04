@@ -6,7 +6,7 @@ import requests
 from os.path import dirname, join
 from crate.testing.layer import CrateLayer
 from lovely.testlayers.layer import CascadedLayer
-from serienjunky.testing.layer import TornadoLayer
+from streammania.testing.layer import TornadoLayer
 
 
 here = dirname(__file__)

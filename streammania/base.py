@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from tornado.web import RequestHandler
 
-from serienjunky.models import User
+from streammania.models import User
 
 
 class BaseHandler(RequestHandler):

@@ -6,7 +6,7 @@ requirements = [
     'tornado'
 ]
 
-versionf_content = open("serienjunky/__init__.py").read()
+versionf_content = open("streammania/__init__.py").read()
 version_rex = r'^__version__ = [\'"]([^\'"]*)[\'"]$'
 m = re.search(version_rex, versionf_content, re.M)
 if m:
@@ -15,7 +15,7 @@ else:
     raise RuntimeError('Unable to find version string')
 
 setup(
-    name='serienjunky',
+    name='streammania',
     version=version,
     install_requires=requirements,
     extras_require={
@@ -23,6 +23,6 @@ setup(
                  'requests']
     },
     entry_points={
-        'console_scripts': ['app=serienjunky.app:main']
+        'console_scripts': ['app=streammania.app:main']
     }
 )
