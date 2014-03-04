@@ -3,7 +3,8 @@ import re
 
 
 requirements = [
-    'tornado'
+    'tornado',
+    'SQLAlchemy'
 ]
 
 versionf_content = open("streammania/__init__.py").read()

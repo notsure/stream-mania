@@ -41,14 +41,14 @@ class StreamMania(Application):
             'debug': isfile(join(project_root, 'debug')),
             'login_url': '/api/auth/google/'
         }
-        super().__init__(handlers, **settings)
+        super(StreamMania, self).__init__(handlers, **settings)
         self.db = Session
         Base.query = self.db.query_property()
 
 
 def main():
     parse_command_line()
-    app = SerienJunky()
+    app = StreamMania()
     app.listen(options.port, '0.0.0.0')
     print(
         'Starting StreamMania on http://localhost:{0}/'.format(options.port))
