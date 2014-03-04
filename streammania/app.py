@@ -29,7 +29,7 @@ class MainHandler(RequestHandler):
 
 class StreamMania(Application):
     def __init__(self):
-        static_path = join(project_root, 'static')
+        static_path = join(project_root, 'webapp/app')
         handlers = [
             (r'/', MainHandler),
             (r'/api/auth/google/?', GoogleAuthHandler),
