@@ -7,12 +7,12 @@ from tornado.web import Application, StaticFileHandler, RequestHandler
 from tornado.options import define, options, parse_command_line
 from tornado.ioloop import IOLoop
 
-from serienjunky.handlers import (
+from streammania.handlers import (
     GoogleAuthHandler,
     ProfileHandler,
     ShowsHandler
 )
-from serienjunky.models import Session, Base
+from streammania.models import Session, Base
 
 
 here = dirname(__file__)
@@ -27,7 +27,7 @@ class MainHandler(RequestHandler):
         return self.redirect('/static/index.html')
 
 
-class SerienJunky(Application):
+class StreamMania(Application):
     def __init__(self):
         static_path = join(project_root, 'static')
         handlers = [
@@ -51,7 +51,7 @@ def main():
     app = SerienJunky()
     app.listen(options.port, '0.0.0.0')
     print(
-        'Starting SerienJunky on http://localhost:{0}/'.format(options.port))
+        'Starting StreamMania on http://localhost:{0}/'.format(options.port))
     try:
         IOLoop.instance().start()
     except KeyboardInterrupt:

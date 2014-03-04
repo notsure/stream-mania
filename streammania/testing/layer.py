@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import multiprocessing
 
 from tornado.ioloop import IOLoop
-from serienjunky.app import SerienJunky
+from streammania.app import StreamMania
 
 
 class TornadoLayer(object):
@@ -18,7 +18,7 @@ class TornadoLayer(object):
             self.port = port
 
         def run(self):
-            app = SerienJunky()
+            app = StreamMania()
             app.listen(self.port)
             self.instance = IOLoop.instance()
             self.instance.start()
