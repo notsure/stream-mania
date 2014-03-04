@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import sys
 from os.path import dirname, join, isfile
 
-from tornado.web import Application
+from tornado.web import Application, StaticFileHandler, RequestHandler
 from tornado.options import define, options, parse_command_line
 from tornado.ioloop import IOLoop
 
@@ -22,12 +22,20 @@ project_root = join(here, '..')
 define('port', default=8080, help='run on the given port', type=int)
 
 
+class MainHandler(RequestHandler):
+    def get(self):
+        return self.redirect('/static/index.html')
+
+
 class SerienJunky(Application):
     def __init__(self):
+        static_path = join(project_root, 'static')
         handlers = [
+            (r'/', MainHandler),
             (r'/api/auth/google/?', GoogleAuthHandler),
             (r'/api/me/profile/?', ProfileHandler),
-            (r'/api/shows/?', ShowsHandler)
+            (r'/api/shows/?', ShowsHandler),
+            (r'/static/(.*)$', StaticFileHandler, {'path': static_path})
         ]
         settings = {
             'debug': isfile(join(project_root, 'debug')),
