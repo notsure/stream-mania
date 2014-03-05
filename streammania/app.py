@@ -17,6 +17,7 @@ from streammania.models import Session, Base
 
 here = dirname(__file__)
 project_root = join(here, '..')
+static_path = join(project_root, 'webapp/app')
 
 
 define('port', default=8080, help='run on the given port', type=int)
@@ -24,12 +25,11 @@ define('port', default=8080, help='run on the given port', type=int)
 
 class MainHandler(RequestHandler):
     def get(self):
-        return self.redirect('/static/index.html')
+        return self.render(static_path + '/index.html')
 
 
 class StreamMania(Application):
     def __init__(self):
-        static_path = join(project_root, 'static')
         handlers = [
             (r'/', MainHandler),
             (r'/api/auth/google/?', GoogleAuthHandler),

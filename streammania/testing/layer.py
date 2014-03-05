@@ -14,7 +14,7 @@ class TornadoLayer(object):
     class TornadoProcess(multiprocessing.Process):
 
         def __init__(self, port):
-            super().__init__()
+            super().__init__(handlers, **settings)
             self.port = port
 
         def run(self):
