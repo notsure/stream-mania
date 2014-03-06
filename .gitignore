@@ -5,3 +5,6 @@ develop-eggs/
 parts/
 *.egg-info/
 __pycache__
+webapp/node_modules/
+webapp/app/bower_components
+webapp/.tmp/
