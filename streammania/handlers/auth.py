@@ -1,7 +1,6 @@
 import tornado.auth
 from tornado.web import asynchronous
 
-
 from streammania.models import User
 from streammania.base import BaseHandler
 
@@ -35,11 +34,3 @@ class GoogleAuthHandler(BaseHandler, tornado.auth.GoogleMixin):
         self.db.commit()
         self.set_secure_cookie('usertoken', dbuser.openid)
         self.finish()
-
-
-class ProfileHandler(BaseHandler):
-    pass
-
-
-class ShowsHandler(BaseHandler):
-    pass

@@ -13,9 +13,18 @@ class TornadoLayer(object):
 
     class TornadoProcess(multiprocessing.Process):
 
-        def __init__(self, port):
-            super().__init__(handlers, **settings)
+        def __init__(self, port, patches):
+            super().__init__()
             self.port = port
+            self.patches = patches or []
+            for patch in self.patches:
+                patch.start()
+
+
+        def terminate(self):
+            for patch in self.patches:
+                patch.stop()
+            super().terminate()
 
         def run(self):
             app = StreamMania()
@@ -23,8 +32,8 @@ class TornadoLayer(object):
             self.instance = IOLoop.instance()
             self.instance.start()
 
-    def __init__(self, port):
-        self.server_process = self.TornadoProcess(port)
+    def __init__(self, port, patches=None):
+        self.server_process = self.TornadoProcess(port, patches)
 
     def setUp(self):
         self.server_process.start()

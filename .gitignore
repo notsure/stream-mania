@@ -3,6 +3,7 @@ debug
 bin/
 develop-eggs/
 parts/
+*.pyc
 *.egg-info/
 __pycache__
 webapp/node_modules/
