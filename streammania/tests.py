@@ -67,6 +67,12 @@ class WrappedSession():
     def login(self):
         self.session.post('{}/__debug/api/auth/'.format(self.uri))
 
+    def logout(self):
+        self.session.delete('{}/__debug/api/auth/'.format(self.uri))
+
+    def authenticate(self):
+        self.session.post('{}/__debug/api/auth/google/'.format(self.uri))
+
     def __getattr__(self, attr):
         return WrappedSession(self.uri, self.session, attr)
 
