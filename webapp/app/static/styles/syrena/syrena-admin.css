@@ -1,0 +1,28 @@
+/**
+ * Include all of default syrena stylesheet
+ */
+@import url('main.css');
+@import url('main-large-desktop.css');
+@import url('main-desktop.css');
+@import url('main-tablet.css');
+@import url('main-phone.css');
+
+@import url('helper.css');
+@import url('login.css');
+
+
+/**
+ * Styled components
+ * Include Theme Components
+ */
+@import url('typography.css');
+@import url('buttons.css');
+@import url('components.css');
+@import url('forms.css');
+
+
+/**
+ * Syrena default theme
+ */
+@import url('syrena-admin-theme-default.css');
+ 
