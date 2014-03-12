@@ -11,10 +11,10 @@ class BaseHandler(RequestHandler):
         return self.application.db
 
     def get_current_user(self):
-        openid = self.get_secure_cookie('usertoken')
-        if not openid:
+        username = self.get_secure_cookie('username')
+        if not username:
             return None
-        if isinstance(openid, bytes):
-            openid = openid.decode('utf-8')
-        user = User.query.filter_by(openid=openid).first()
+        if isinstance(username, bytes):
+            username = username.decode('utf-8')
+        user = User.query.filter_by(username=username).first()
         return user
