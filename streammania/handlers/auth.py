@@ -24,16 +24,12 @@ class GoogleAuthHandler(BaseHandler, tornado.auth.GoogleMixin):
             dbuser.first_name = user['first_name']
             dbuser.last_name = user['last_name']
             dbuser.email = user['email']
+            self.set_secure_cookie('username', dbuser.username)
+            self.db.commit()
         else:
-            dbuser = User(first_name=user['first_name'],
-                          last_name=user['last_name'],
-                          email=user['email'],
-                          openid=user['claimed_id'])
-            self.db.add(dbuser)
-        self.write({
-            'status': 'success',
-            'data': None
-        })
-        self.db.commit()
-        self.set_secure_cookie('usertoken', dbuser.openid)
+            self.set_secure_cookie('openid', user['claimed_id'])
+            self.set_secure_cookie('email', user['email'])
+            self.set_secure_cookie('first_name', user['first_name'])
+            self.set_secure_cookie('last_name', user['last_name'])
+        self.write(dict(status='success', data=None))
         self.finish()

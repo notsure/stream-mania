@@ -16,8 +16,7 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'users'
 
-    id = sa.Column(sa.String, primary_key=True)
-    username = sa.Column(sa.Unicode(60), nullable=True)
+    username = sa.Column(sa.Unicode(60), nullable=False, primary_key=True)
     first_name = sa.Column(sa.Unicode(80), nullable=False)
     last_name = sa.Column(sa.Unicode(80), nullable=False)
     email = sa.Column(sa.Unicode(300), nullable=False)

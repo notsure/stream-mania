@@ -1,6 +1,5 @@
 create table users (
-    id string primary key,
-    username string,
+    username string primary key,
     first_name string,
     last_name string,
     email string,
