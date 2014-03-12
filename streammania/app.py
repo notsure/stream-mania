@@ -7,11 +7,9 @@ from tornado.web import Application, StaticFileHandler, RequestHandler
 from tornado.options import define, options, parse_command_line
 from tornado.ioloop import IOLoop
 
-from streammania.handlers import (
-    GoogleAuthHandler,
-    ProfileHandler,
-    ShowsHandler
-)
+from streammania.handlers.shows import ShowsHandler
+from streammania.handlers.auth import GoogleAuthHandler
+from streammania.handlers.user import ProfileHandler
 from streammania.models import Session, Base
 
 
@@ -34,7 +32,7 @@ class StreamMania(Application):
             (r'/', MainHandler),
             (r'/api/auth/google/?', GoogleAuthHandler),
             (r'/api/me/profile/?', ProfileHandler),
-            (r'/api/shows/?', ShowsHandler),
+            (r'/api/shows/([a-zA-Z]{2})/(.*)/?', ShowsHandler),
             (r'/static/(.*)$', StaticFileHandler, {'path': static_path})
         ]
         settings = {
