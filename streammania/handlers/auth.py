@@ -8,6 +8,9 @@ from streammania.base import BaseHandler
 class GoogleAuthHandler(BaseHandler, tornado.auth.GoogleMixin):
     @asynchronous
     def get(self):
+        user = self.get_current_user()
+        if user and not user.username:
+            self.redirect('/webapp/register')
         if self.get_argument('openid.mode', None):
             self.get_authenticated_user(self.async_callback(self._on_auth))
             return

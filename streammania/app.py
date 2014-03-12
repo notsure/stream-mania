@@ -9,8 +9,9 @@ from tornado.ioloop import IOLoop
 
 from streammania.handlers.shows import ShowsHandler
 from streammania.handlers.auth import GoogleAuthHandler
-from streammania.handlers.user import ProfileHandler
+from streammania.handlers.user import MeHandler
 from streammania.models import Session, Base
+from streammania.config import cookie_secret
 
 
 here = dirname(__file__)
@@ -27,20 +28,25 @@ class MainHandler(RequestHandler):
 
 
 class StreamMania(Application):
-    def __init__(self):
+    def __init__(self, dbsession=None, debug_mode=False):
+        debug = debug_mode or isfile(join(project_root, 'debug'))
         handlers = [
             (r'/', MainHandler),
             (r'/api/auth/google/?', GoogleAuthHandler),
-            (r'/api/me/profile/?', ProfileHandler),
+            (r'/api/me/?', MeHandler),
             (r'/api/shows/([a-zA-Z]{2})/(.*)/?', ShowsHandler),
-            (r'/static/(.*)$', StaticFileHandler, {'path': static_path})
+            (r'/webapp/(.*)$', StaticFileHandler, {'path': static_path})
         ]
+        if debug:
+            from streammania.testing.handlers import testing_handlers
+            handlers += testing_handlers
         settings = {
-            'debug': isfile(join(project_root, 'debug')),
-            'login_url': '/api/auth/google/'
+            'debug': debug,
+            'cookie_secret': cookie_secret,
+            'login_url': '/webapp/login/'
         }
         super(StreamMania, self).__init__(handlers, **settings)
-        self.db = Session
+        self.db = dbsession or Session
         Base.query = self.db.query_property()
 
 

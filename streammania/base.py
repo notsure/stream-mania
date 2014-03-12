@@ -12,6 +12,8 @@ class BaseHandler(RequestHandler):
 
     def get_current_user(self):
         openid = self.get_secure_cookie('usertoken')
+        if not openid:
+            return None
         if isinstance(openid, bytes):
             openid = openid.decode('utf-8')
         user = User.query.filter_by(openid=openid).first()
