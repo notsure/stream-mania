@@ -1,6 +1,6 @@
 import os
 
-sqla_uri = os.environ.get('DATABASE_URL', 'sqlite:///streammania.db')
+sqla_uri = os.environ.get('DATABASE_URL', 'crate://')
 sqla_params = {
     'echo': False,
     'encoding': 'utf-8'

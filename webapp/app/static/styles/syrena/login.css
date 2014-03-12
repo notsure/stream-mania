@@ -1,0 +1,48 @@
+/* Sign page */
+.sign-wrapper{
+	height: 100vh !important; /* viewport height like percent (http://www.w3.org/TR/css3-values/#viewport-relative-lengths) */
+	width: 100%;
+	top: 0;
+	left: 0;
+	color: #ecf0f1;
+	overflow: hidden;
+	background-color: rgba(52, 152, 219, .9);
+    margin-top: -20px !important;
+}
+.sign-container{
+	position: relative;
+}
+.sign-container .well{
+    color: black;
+}
+.sign-brand{
+	text-align: center;
+	margin-top: 10%;
+	margin-bottom: 10%;
+}
+.sign-brand-logo{
+	margin-bottom: 20px;
+}
+.sign-brand-logo img{
+	width: 72px;
+	height: 72px;
+	line-height: 72px;
+}
+.sign-brand-name{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.sign-footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 5px 5px 15px;
+	text-align: center;
+}
+.sign-footer a{
+	text-decoration: underline;
+	line-height: 1.2em;
+}
+/* end sign page */
