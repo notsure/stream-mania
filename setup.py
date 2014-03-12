@@ -4,7 +4,8 @@ import re
 
 requirements = [
     'tornado',
-    'SQLAlchemy'
+    'pytvdbapi',
+    'crate [sqlalchemy]'
 ]
 
 versionf_content = open("streammania/__init__.py").read()
@@ -21,6 +22,7 @@ setup(
     install_requires=requirements,
     extras_require={
         'test': ['crate [test]',
+                 'mock',
                  'requests']
     },
     entry_points={

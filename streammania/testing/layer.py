@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import multiprocessing
 
 from tornado.ioloop import IOLoop
-from streammania.app import StreamMania
 
 
 class TornadoLayer(object):
@@ -13,18 +12,27 @@ class TornadoLayer(object):
 
     class TornadoProcess(multiprocessing.Process):
 
-        def __init__(self, port):
-            super().__init__(handlers, **settings)
+        def __init__(self, app, port, patches):
+            super().__init__()
+            self.app = app
             self.port = port
+            self.patches = patches or []
+            for patch in self.patches:
+                patch.start()
+
+
+        def terminate(self):
+            for patch in self.patches:
+                patch.stop()
+            super().terminate()
 
         def run(self):
-            app = StreamMania()
-            app.listen(self.port)
+            self.app.listen(self.port)
             self.instance = IOLoop.instance()
             self.instance.start()
 
-    def __init__(self, port):
-        self.server_process = self.TornadoProcess(port)
+    def __init__(self, app, port, patches=None):
+        self.server_process = self.TornadoProcess(app, port, patches)
 
     def setUp(self):
         self.server_process.start()
