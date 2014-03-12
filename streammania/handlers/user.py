@@ -32,9 +32,10 @@ class MeHandler(BaseHandler):
                         user_property: msg
                     }
                 })
-                self.set_status(402)
+                self.set_status(400)
                 return
             setattr(user, user_property, value)
         self.db.add(user)
         self.db.commit()
+        self.clear_all_cookies() # clear cookies set from openid provider
         self.set_secure_cookie('username', user.username)
